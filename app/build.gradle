@@ -51,7 +51,7 @@ dependencies {
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.1'
     implementation 'com.google.firebase:firebase-analytics-ktx'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
-    implementation 'com.google.firebase:firebase-firestore:21.4.0'
+    implementation 'com.google.firebase:firebase-firestore-ktx:21.4.0'
     implementation 'androidx.multidex:multidex:2.0.1'
 
     testImplementation 'junit:junit:4.+'
