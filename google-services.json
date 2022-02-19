@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "901848354758",
+    "project_id": "nerdsexercising",
+    "storage_bucket": "nerdsexercising.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:901848354758:android:e1db1de082c37cadce6cc7",
+        "android_client_info": {
+          "package_name": "com.example.nerdsexcercising"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "901848354758-b498pdt6i9q1uumgung4m09kbq4qcg1n.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBC6syZ1Qo1SQcl53PKXW28w8PhPnVRnwQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "901848354758-b498pdt6i9q1uumgung4m09kbq4qcg1n.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
