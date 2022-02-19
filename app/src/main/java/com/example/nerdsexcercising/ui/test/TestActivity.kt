@@ -5,7 +5,9 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Button
 import com.example.nerdsexcercising.R
-import com.google.firebase.firestore.FirebaseFirestore
+import com.example.nerdsexcercising.data.Repository
+import com.example.nerdsexcercising.data.model.Exercise
+import com.example.nerdsexcercising.data.model.Workout
 
 class TestActivity : AppCompatActivity() {
     private val TAG : String = "TestActivity"
@@ -14,14 +16,12 @@ class TestActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_test)
 
-        // connections to firebase
-        val firestore: FirebaseFirestore = FirebaseFirestore.getInstance();
+        val repository = Repository()
 
         // test buttons
         val retrieveButton: Button = findViewById<Button>(R.id.main_btn_retrieveData)
         retrieveButton.setOnClickListener{
-            val collected = firestore.collection("users");
-            collected.get()
+            repository.getWorkouts()
                 .addOnSuccessListener { documents ->
                     for(document in documents) {
                         Log.d("SUCCESS", document.data.toString());
@@ -31,14 +31,16 @@ class TestActivity : AppCompatActivity() {
 
         val sendDataButton: Button = findViewById<Button>(R.id.main_btn_sendData)
         sendDataButton.setOnClickListener {
-            val user = hashMapOf(
-                "first" to "Alan",
-                "middle" to "Mathison",
-                "last" to "Turing",
-                "born" to 1912
+            val squats20 = Exercise("squats", 20);
+            val pushups25 = Exercise("pushups", 25);
+            val situps50 = Exercise("situps", 50);
+            val pullups30 = Exercise("pullups", 30);
+            val workout = Workout(
+                "Cardio",
+                listOf(squats20, pushups25,  situps50, pullups30),
+                3000
             )
-            firestore.collection("users")
-                .add(user)
+            repository.addWorkout(workout)
                 .addOnSuccessListener { documentReference ->
                     Log.d(TAG, "DocumentSnapshot added with ID: ${documentReference.id}")
                 }

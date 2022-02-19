@@ -1,4 +1,6 @@
 package com.example.nerdsexcercising.data.model
 
-class Exercise {
-}
+data class Exercise (
+    val name: String,
+    val reps: Number
+)
