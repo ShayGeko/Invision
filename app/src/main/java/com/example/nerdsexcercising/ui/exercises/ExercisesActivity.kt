@@ -21,8 +21,12 @@ class ExercisesActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_exercises)
 
-        val goback = findViewById<TextView>(R.id.singleEx_textView_goBack)
+        val workoutName = intent.getSerializableExtra("workoutId").toString();
 
+        val titleText = findViewById<TextView>(R.id.exercises_workout_name)
+        titleText.text = workoutName
+
+        val goback = findViewById<TextView>(R.id.singleEx_textView_goBack)
         goback.setOnClickListener{
             finish()
         }
