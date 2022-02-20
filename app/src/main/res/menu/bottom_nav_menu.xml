@@ -2,18 +2,18 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/exercise"
-        android:title="Exercise"
-        android:icon="@drawable/ic_person_foreground"/>
+        android:title="Workouts"
+        android:icon="@drawable/ic_workouts"/>
     <item
         android:id="@+id/home"
         android:title="Home"
-        android:icon="@drawable/ic_person_foreground"/>
+        android:icon="@drawable/ic_home"/>
     <item
         android:id="@+id/challenges"
         android:title="Challenges"
-        android:icon="@drawable/ic_person_foreground"/>
+        android:icon="@drawable/ic_challenges"/>
     <item
-        android:id="@+id/profile"
-        android:title="Profile"
-        android:icon="@drawable/ic_person_foreground"/>
+        android:id="@+id/account"
+        android:title="Account"
+        android:icon="@drawable/ic_account"/>
 </menu>
