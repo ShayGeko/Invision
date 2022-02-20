@@ -27,7 +27,7 @@ class MainActivity : AppCompatActivity() {
 
         val exerciseFragment: Fragment = ExerciseFragment()
         val homeFragment: Fragment = HomeFragment()
-        val challengesFragment: Fragment = ChallengesFragment()
+        // val challengesFragment: Fragment = ChallengesFragment()
         val profileFragment: Fragment = ProfileFragment()
 
         setCurrentFragment(homeFragment)
@@ -37,7 +37,7 @@ class MainActivity : AppCompatActivity() {
             when(it.itemId){
                 R.id.main_botNavBtn_exercise->setCurrentFragment(exerciseFragment)
                 R.id.main_botNavBtn_home->setCurrentFragment(homeFragment)
-                R.id.main_botNavBtn_challenges->setCurrentFragment(challengesFragment)
+                // R.id.main_botNavBtn_challenges->setCurrentFragment(challengesFragment)
                 R.id.main_botNavBtn_profile->setCurrentFragment(profileFragment)
             }
             true

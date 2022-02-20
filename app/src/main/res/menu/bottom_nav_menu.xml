@@ -10,11 +10,11 @@
         android:title="Home"
         android:enabled="true"
         android:icon="@drawable/ic_home"/>
-    <item
-        android:id="@+id/main_botNavBtn_challenges"
-        android:title="Challenges"
-        android:enabled="true"
-        android:icon="@drawable/ic_challenges"/>
+<!--    <item-->
+<!--        android:id="@+id/main_botNavBtn_challenges"-->
+<!--        android:title="Challenges"-->
+<!--        android:enabled="true"-->
+<!--        android:icon="@drawable/ic_challenges"/>-->
     <item
         android:id="@+id/main_botNavBtn_profile"
         android:title="Profile"
