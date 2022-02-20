@@ -8,17 +8,257 @@
     tools:context=".ui.MainActivity">
 
     <TextView
-        android:id="@+id/challengesFragment"
+        android:id="@+id/textView"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/teal_primary"
+        android:fontFamily="@font/montserrat_bold"
+        android:text="Daily Challenges"
+        android:textColor="@color/white"
+        android:textSize="30dp"
+        android:paddingLeft="30dp"
+        android:paddingVertical="30dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/materialButton4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="30dp"
+        android:backgroundTint="@color/white"
+        android:drawableLeft="@drawable/ic_lightning"
+        android:fontFamily="@font/montserrat_medium"
+        android:paddingVertical="45dp"
+        android:textAlignment="textStart"
+        android:textColor="@color/black"
+        android:translationZ="10dp"
+        app:cornerRadius="15dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+    <TextView
+        android:id="@+id/textView15"
+        android:layout_width="240dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/montserrat_semibold"
+        android:paddingStart="70dp"
+        android:text="Do 75 pushups in 3 mins"
+        android:textColor="@color/black"
+        android:textSize="18dp"
+        android:translationZ="100dp"
+        app:layout_constraintStart_toStartOf="@+id/materialButton4"
+        app:layout_constraintTop_toTopOf="@+id/materialButton4" />
+
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Challenges!"
-        android:textColor="#43a047"
-        android:textSize="40sp"
-        android:textStyle="italic|bold"
+        android:fontFamily="@font/montserrat_semibold"
+        android:layout_marginTop="16dp"
+        android:paddingEnd="20dp"
+        android:text="300 XP"
+        android:textSize="18dp"
+        android:translationZ="100dp"
+        app:layout_constraintEnd_toEndOf="@+id/materialButton4"
+        app:layout_constraintTop_toTopOf="@+id/materialButton4" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/materialButton2"
+        android:layout_width="285dp"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="12dp"
+        android:backgroundTint="@color/teal_primary"
+        android:paddingVertical="12dp"
+        android:text="START"
+        android:translationZ="100dp"
+        app:layout_constraintBottom_toBottomOf="@+id/materialButton4"
+        app:layout_constraintEnd_toEndOf="@+id/materialButton4" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/materialButton5"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="20dp"
+        android:backgroundTint="@color/white"
+        android:drawableLeft="@drawable/ic_lightning"
+        android:fontFamily="@font/montserrat_medium"
+        android:paddingVertical="45dp"
+        android:textAlignment="textStart"
+        android:textColor="@color/black"
+        android:translationZ="10dp"
+        app:cornerRadius="15dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/materialButton4" />
+
+    <TextView
+        android:id="@+id/textView16"
+        android:layout_width="240dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/montserrat_semibold"
+        android:layout_marginTop="16dp"
+        android:paddingStart="70dp"
+        android:text="Run 1500 meters in 6 mins"
+        android:textColor="@color/black"
+        android:textSize="18dp"
+        android:translationZ="100dp"
+        app:layout_constraintStart_toStartOf="@+id/materialButton5"
+        app:layout_constraintTop_toTopOf="@+id/materialButton5" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/montserrat_semibold"
+        android:layout_marginTop="16dp"
+        android:paddingEnd="20dp"
+        android:text="500 XP"
+        android:textSize="18dp"
+        android:translationZ="100dp"
+        app:layout_constraintEnd_toEndOf="@+id/materialButton5"
+        app:layout_constraintTop_toTopOf="@+id/materialButton5" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/materialButton3"
+        android:layout_width="285dp"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="12dp"
+        android:backgroundTint="@color/teal_primary"
+        android:paddingVertical="12dp"
+        android:text="START"
+        android:translationZ="100dp"
+        app:layout_constraintBottom_toBottomOf="@+id/materialButton5"
+        app:layout_constraintEnd_toEndOf="@+id/materialButton5" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/materialButton6"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="20dp"
+        android:backgroundTint="@color/white"
+        android:drawableLeft="@drawable/ic_lightning"
+        android:fontFamily="@font/montserrat_medium"
+        android:paddingVertical="45dp"
+        android:textAlignment="textStart"
+        android:textColor="@color/black"
+        android:translationZ="10dp"
+        app:cornerRadius="15dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/materialButton5" />
+
+    <TextView
+        android:id="@+id/textView17"
+        android:layout_width="240dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/montserrat_semibold"
+        android:layout_marginTop="16dp"
+        android:paddingStart="70dp"
+        android:text="Do 100 squats in 2 mins"
+        android:textColor="@color/black"
+        android:textSize="18dp"
+        android:translationZ="100dp"
+        app:layout_constraintStart_toStartOf="@+id/materialButton6"
+        app:layout_constraintTop_toTopOf="@+id/materialButton6" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/montserrat_semibold"
+        android:layout_marginTop="16dp"
+        android:paddingEnd="20dp"
+        android:text="200 XP"
+        android:textSize="18dp"
+        android:translationZ="100dp"
+        app:layout_constraintEnd_toEndOf="@+id/materialButton6"
+        app:layout_constraintTop_toTopOf="@+id/materialButton6" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/materialButton7"
+        android:layout_width="285dp"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="12dp"
+        android:backgroundTint="@color/teal_primary"
+        android:paddingVertical="12dp"
+        android:text="START"
+        android:translationZ="100dp"
+        app:layout_constraintBottom_toBottomOf="@+id/materialButton6"
+        app:layout_constraintEnd_toEndOf="@+id/materialButton6" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/materialButton8"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="20dp"
+        android:backgroundTint="@color/white"
+        android:drawableLeft="@drawable/ic_lightning"
+        android:fontFamily="@font/montserrat_medium"
+        android:paddingVertical="45dp"
+        android:textAlignment="textStart"
+        android:textColor="@color/black"
+        android:translationZ="10dp"
+        app:cornerRadius="15dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/materialButton6" />
+
+    <TextView
+        android:id="@+id/textView18"
+        android:layout_width="240dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/montserrat_semibold"
+        android:layout_marginTop="16dp"
+        android:paddingStart="70dp"
+        android:text="Do 4 reps of benchpress"
+        android:textColor="@color/black"
+        android:textSize="18dp"
+        android:translationZ="100dp"
+        app:layout_constraintStart_toStartOf="@+id/materialButton8"
+        app:layout_constraintTop_toTopOf="@+id/materialButton8" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/montserrat_semibold"
+        android:layout_marginTop="16dp"
+        android:paddingEnd="20dp"
+        android:text="200 XP"
+        android:textSize="18dp"
+        android:translationZ="100dp"
+        app:layout_constraintEnd_toEndOf="@+id/materialButton8"
+        app:layout_constraintTop_toTopOf="@+id/materialButton8" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/materialButton9"
+        android:layout_width="285dp"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="12dp"
+        android:backgroundTint="@color/teal_primary"
+        android:paddingVertical="12dp"
+        android:text="START"
+        android:translationZ="100dp"
+        app:layout_constraintBottom_toBottomOf="@+id/materialButton8"
+        app:layout_constraintEnd_toEndOf="@+id/materialButton8" />
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNavigationView"
+        android:layout_width="match_parent"
+        android:layout_height="75dp"
+        android:translationZ="200dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:menu="@menu/bottom_nav_menu"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
