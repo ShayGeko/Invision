@@ -1,14 +1,34 @@
 <resources>
-    <string name="app_name">NerdsExcercising</string>
+    <string name="app_name">invision</string>
     <!-- Strings related to login -->
+    <string name="title">invision</string>
+    <string name="subtitle">Track results, complete challenges, set goals. All in one place.</string>
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password</string>
-    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in">Login with Google</string>
     <string name="action_sign_in_short">Sign in</string>
+    <string name="sign_up">Not a member? Sign Up</string>
+    <string name="welcome_image_desc">Welcome Page Illustration</string>
     <string name="welcome">"Welcome !"</string>
     <string name="invalid_username">Not a valid username</string>
     <string name="invalid_password">Password must be >5 characters</string>
     <string name="login_failed">"Login failed"</string>
+    <!--  Strings for home page  -->
+    <string name="home_header_desc">"The background for home page header."</string>
+    <string name="hello_user">Hey, Towa</string>
+    <string name="home_tagline">Let\'s exercise</string>
+    <string name="home_account_icon_desc">Account Icon</string>
+    <string name="level_indicator_design_desc">Level indicator design</string>
+    <string name="level_number">01</string>
+    <string name="level_tag">Level</string>
+    <string name="curr_level_xp">0</string>
+    <string name="total_level_xp">/ 1500 XP</string>
+    <string name="curr_progress_title">Current Progress</string>
+    <string name="curr_workout_bg_desc">Current Progress background design</string>>
+    <string name="curr_workout_section_title">Your Workout</string>
+    <string name="curr_workout_section_none">Oh! You haven\'t started a workout. Choose one to begin your journey!</string>
+    <string name="add_workout_btn">Button to start a workout</string>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

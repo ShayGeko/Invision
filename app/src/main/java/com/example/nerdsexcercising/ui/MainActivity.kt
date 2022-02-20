@@ -29,7 +29,6 @@ class MainActivity : AppCompatActivity() {
                 R.id.exercise->setCurrentFragment(exerciseFragment)
                 R.id.home->setCurrentFragment(homeFragment)
                 R.id.challenges->setCurrentFragment(challengesFragment)
-                R.id.profile->setCurrentFragment(profileFragment)
 
             }
             true

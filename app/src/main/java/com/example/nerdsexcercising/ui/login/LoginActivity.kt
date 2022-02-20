@@ -44,7 +44,7 @@ class LoginActivity : AppCompatActivity() {
 
         // Set the dimensions of the sign-in button.
         // Set the dimensions of the sign-in button.
-        val signInButton = findViewById<SignInButton>(R.id.sign_in_button)
+        val signInButton = findViewById<SignInButton>(R.id.login)
         signInButton.setSize(SignInButton.SIZE_STANDARD)
         signInButton.setOnClickListener {
             signIn(googleSignInClient)
