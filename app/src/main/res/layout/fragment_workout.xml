@@ -1,21 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".ui.MainActivity">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/workouts_recycler_view"
+    <TextView
+        android:id="@+id/singleEx_textView_goBack"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/teal_primary"
+        android:fontFamily="@font/montserrat_bold"
+        android:paddingVertical="30dp"
+        android:paddingLeft="30dp"
+        android:text="Select Workout"
+        android:textColor="@color/white"
+        android:textSize="30dp" />
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_height="match_parent">
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/workouts_recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
 
-
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+</LinearLayout>
