@@ -4,11 +4,11 @@ package com.example.nerdsexcercising.data.model
  * Data class that captures user information for logged in users retrieved from LoginRepository
  */
 data class LoggedInUser(
-    val userId: String,
-    val displayName: String,
-    val level: Number,
-    val progress: List<Workout>,
-    var selectedWorkout: Workout?,
-    var cntCompletedExercises: Number,
-    var cntCompletedWorkouts: Number
+    val userId: String = "",
+    val displayName: String ="",
+    val level: Int = 0,
+    val progress: List<Workout> = emptyList(),
+    var selectedWorkout: Workout? = null,
+    var cntCompletedExercises: Int = 0,
+    var cntCompletedWorkouts: Int = 0
 )

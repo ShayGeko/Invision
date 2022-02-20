@@ -1,8 +1,10 @@
 package com.example.nerdsexcercising.ui
 
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import com.example.nerdsexcercising.R
 import com.example.nerdsexcercising.ui.challenges.ChallengesFragment
@@ -10,12 +12,19 @@ import com.example.nerdsexcercising.ui.home.HomeFragment
 import com.example.nerdsexcercising.ui.exercices.ExerciseFragment
 import com.example.nerdsexcercising.ui.profile.ProfileFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 
 class MainActivity : AppCompatActivity() {
+    private lateinit var auth: FirebaseAuth;
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        auth = Firebase.auth;
 
         val exerciseFragment=ExerciseFragment()
         val homeFragment=HomeFragment()
@@ -29,7 +38,6 @@ class MainActivity : AppCompatActivity() {
                 R.id.exercise->setCurrentFragment(exerciseFragment)
                 R.id.home->setCurrentFragment(homeFragment)
                 R.id.challenges->setCurrentFragment(challengesFragment)
-
             }
             true
         }
