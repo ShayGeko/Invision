@@ -34,6 +34,7 @@ object Repository {
         fun updateUser(user : LoggedInUser) : Task<Void> {
                 return db.collection("users").document(user.userId).set(user);
         }
+        fun getCacheUser(): LoggedInUser? = cachedUser;
         suspend fun getUser(uid : String): LoggedInUser {
                 val collected: Task<DocumentSnapshot> =
                         db.collection("users").document(uid).get();
@@ -54,13 +55,13 @@ object Repository {
                         guest;
                 } else {
                         LoggedInUser(
-                                data["userID"] as String,
+                                data["userId"] as String,
                                 data["displayName"] as String,
-                                data["experience"] as Double,
+                                (data["experience"] as Long).toDouble(),
                                 data["progress"] as List<Workout>,
                                 data["selectedWorkout"] as Workout?,
-                                data["cntCompletedExercises"] as Int,
-                                data["cntCompletedWorkouts"] as Int,
+                                (data["cntCompletedExercises"] as Long).toInt(),
+                                (data["cntCompletedWorkouts"] as Long).toInt(),
                         )
                 }
                 return cachedUser!!;
