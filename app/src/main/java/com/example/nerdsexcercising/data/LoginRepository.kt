@@ -1,6 +1,7 @@
 package com.example.nerdsexcercising.data
 
 import com.example.nerdsexcercising.data.model.LoggedInUser
+import com.example.nerdsexcercising.data.model.Workout
 
 /**
  * Class that requests authentication and user information from the remote data source and
@@ -19,7 +20,15 @@ class LoginRepository(val dataSource: LoginDataSource) {
     init {
         // If user credentials will be cached in local storage, it is recommended it be encrypted
         // @see https://developer.android.com/training/articles/keystore
-        user = null
+        user = LoggedInUser(
+            "Ike",
+            "Ike",
+            10.0,
+            listOf(),
+            Workout("SelectedWO", listOf(), 0),
+            0,
+            0,
+        );
     }
 
     fun logout() {

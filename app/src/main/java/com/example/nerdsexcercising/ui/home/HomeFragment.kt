@@ -1,60 +1,99 @@
 package com.example.nerdsexcercising.ui.home
 
+import android.graphics.Typeface
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.ProgressBar
+import android.widget.TextView
 import com.example.nerdsexcercising.R
+import com.example.nerdsexcercising.data.Utility
+import com.example.nerdsexcercising.data.model.LoggedInUser
+import com.example.nerdsexcercising.data.model.Workout
+import com.example.nerdsexcercising.ui.exercises.ExerciseFragment
+import kotlin.math.ceil
+import kotlin.math.floor
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [HomeFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class HomeFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_home, container, false)
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment HomeFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            HomeFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        val user = LoggedInUser(
+            "Ike",
+            "Ike",
+            12351.0,
+            listOf(),
+            Workout("SelectedWO", listOf(), 100),
+            0,
+            0,
+        );
+
+        // "hello x, let's exercise!"
+        val helloTextView: TextView =
+            view.findViewById<TextView>(R.id.homeFragment_textView_hello);
+        helloTextView.text = "Hey " + user.displayName;
+
+        // level progress bar
+        val level: Double = Utility.getLevel(user.experience);
+        val experienceNow: Int =
+            floor(user.experience - Utility.getExperienceRequired(level - 1)).toInt();
+        val experienceGoal: Int =
+            ceil(Utility.getExperienceRequired(level + 1) - user.experience).toInt();
+        val levelProgressBar: ProgressBar =
+            view.findViewById<ProgressBar>(R.id.homeFragment_progressBar_);
+        levelProgressBar.progress =
+            ((experienceNow / experienceGoal.toDouble()) * 100).toInt();
+
+        // level text
+        val levelTextView: TextView = view.findViewById(R.id.homeFragment_textView_level);
+        levelTextView.text = (level+1).toInt().toString();
+
+        // current exp text
+        val currentEXPTextView: TextView = view.findViewById(R.id.homeFragment_textView_currentEXP);
+        val maxEXPTextView: TextView = view.findViewById(R.id.homeFragment_textView_maxEXP);
+        currentEXPTextView.text = experienceNow.toString();
+        maxEXPTextView.text = getString(R.string.total_level_xp)
+            .replace("1500", experienceGoal.toString());
+
+        // your workout, comments, and exp
+        val yourWorkoutCommentTextView: TextView =
+            view.findViewById(R.id.homeFragment_textView_yourWorkoutComment)
+        val yourWorkoutExpTextView: TextView=
+            view.findViewById(R.id.homeFragment_textView_yourWorkoutEXP);
+        val currentWO: Workout? = user.selectedWorkout;
+        if (currentWO === null) {
+            yourWorkoutCommentTextView.text = getString(R.string.curr_workout_section_none);
+            yourWorkoutExpTextView.visibility = View.GONE;
+        }
+        else {
+            yourWorkoutCommentTextView.textSize =
+                (yourWorkoutCommentTextView.textSize * 1.2).toFloat();
+            yourWorkoutCommentTextView.setTypeface(null, Typeface.BOLD);
+            yourWorkoutCommentTextView.text = currentWO.name;
+            yourWorkoutExpTextView.visibility = View.VISIBLE;
+            yourWorkoutExpTextView.text = currentWO.reward.toString() + " EXP";
+        }
+
+        // add/resume exercise
+        val addresumeExerciseBtn: ImageView =
+            view.findViewById<ImageView>(R.id.homeFragment_btn_addresumeExercise);
+        addresumeExerciseBtn.setOnClickListener {
+            // transition to exercise fragment
+            activity?.supportFragmentManager
+                ?.beginTransaction()
+                ?.apply {
+                    replace(R.id.main_frag_showingFrag, ExerciseFragment())
+                    commit()
                 }
-            }
+        }
     }
 }
