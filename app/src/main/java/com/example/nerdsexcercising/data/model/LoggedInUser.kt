@@ -8,7 +8,7 @@ data class LoggedInUser(
     val displayName: String,
     val level: Number,
     val progress: List<Workout>,
-    val selectedWorkout: Workout,
-    val cntCompletedExercises: Number,
-    val cntCompletedWorkouts: Number
+    var selectedWorkout: Workout?,
+    var cntCompletedExercises: Number,
+    var cntCompletedWorkouts: Number
 )

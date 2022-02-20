@@ -31,10 +31,10 @@ class TestActivity : AppCompatActivity() {
 
         val sendDataButton: Button = findViewById<Button>(R.id.main_btn_sendData)
         sendDataButton.setOnClickListener {
-            val squats20 = Exercise("squats", 20);
-            val pushups25 = Exercise("pushups", 25);
-            val situps50 = Exercise("situps", 50);
-            val pullups30 = Exercise("pullups", 30);
+            val squats20 = Exercise("squats", 20, false);
+            val pushups25 = Exercise("pushups", 25, false);
+            val situps50 = Exercise("situps", 50, false);
+            val pullups30 = Exercise("pullups", 30, false);
             val workout = Workout(
                 "Cardio",
                 listOf(squats20, pushups25,  situps50, pullups30),
