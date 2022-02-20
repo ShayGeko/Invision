@@ -6,20 +6,16 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.TextView
 import com.example.nerdsexcercising.R
-import com.example.nerdsexcercising.data.Repository
 import com.example.nerdsexcercising.data.Utility
 import com.example.nerdsexcercising.data.model.LoggedInUser
 import com.example.nerdsexcercising.data.model.Workout
-import com.example.nerdsexcercising.ui.MainActivity
-import com.example.nerdsexcercising.ui.exercices.ExerciseFragment
+import com.example.nerdsexcercising.ui.exercises.ExerciseFragment
 import kotlin.math.ceil
 import kotlin.math.floor
-import kotlin.math.pow
 
 class HomeFragment : Fragment() {
     override fun onCreateView(

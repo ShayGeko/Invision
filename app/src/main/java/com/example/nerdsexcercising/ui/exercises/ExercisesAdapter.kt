@@ -1,4 +1,4 @@
-package com.example.nerdsexcercising.ui.exercices
+package com.example.nerdsexcercising.ui.exercises
 
 import android.util.Log
 import android.view.LayoutInflater
