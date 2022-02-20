@@ -1,11 +1,13 @@
 package com.example.nerdsexcercising.ui.home
 
+import android.graphics.Typeface
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.TextView
 import com.example.nerdsexcercising.R
@@ -13,6 +15,8 @@ import com.example.nerdsexcercising.data.Repository
 import com.example.nerdsexcercising.data.Utility
 import com.example.nerdsexcercising.data.model.LoggedInUser
 import com.example.nerdsexcercising.data.model.Workout
+import com.example.nerdsexcercising.ui.MainActivity
+import com.example.nerdsexcercising.ui.exercices.ExerciseFragment
 import kotlin.math.ceil
 import kotlin.math.floor
 import kotlin.math.pow
@@ -32,7 +36,7 @@ class HomeFragment : Fragment() {
             "Ike",
             12351.0,
             listOf(),
-            Workout("SelectedWO", listOf(), 0),
+            Workout("SelectedWO", listOf(), 100),
             0,
             0,
         );
@@ -64,15 +68,36 @@ class HomeFragment : Fragment() {
         maxEXPTextView.text = getString(R.string.total_level_xp)
             .replace("1500", experienceGoal.toString());
 
-        // "current progress"
-        val currentProgressTextView: TextView =
-            view.findViewById<TextView>(R.id.homefragment_textView_currentProgress);
+        // your workout, comments, and exp
+        val yourWorkoutCommentTextView: TextView =
+            view.findViewById(R.id.homeFragment_textView_yourWorkoutComment)
+        val yourWorkoutExpTextView: TextView=
+            view.findViewById(R.id.homeFragment_textView_yourWorkoutEXP);
+        val currentWO: Workout? = user.selectedWorkout;
+        if (currentWO === null) {
+            yourWorkoutCommentTextView.text = getString(R.string.curr_workout_section_none);
+            yourWorkoutExpTextView.visibility = View.GONE;
+        }
+        else {
+            yourWorkoutCommentTextView.textSize =
+                (yourWorkoutCommentTextView.textSize * 1.2).toFloat();
+            yourWorkoutCommentTextView.setTypeface(null, Typeface.BOLD);
+            yourWorkoutCommentTextView.text = currentWO.name;
+            yourWorkoutExpTextView.visibility = View.VISIBLE;
+            yourWorkoutExpTextView.text = currentWO.reward.toString() + " EXP";
+        }
 
         // add/resume exercise
-        val addresumeExerciseBtn: Button =
-            view.findViewById<Button>(R.id.homeFragment_btn_addresumeExercise);
+        val addresumeExerciseBtn: ImageView =
+            view.findViewById<ImageView>(R.id.homeFragment_btn_addresumeExercise);
         addresumeExerciseBtn.setOnClickListener {
             // transition to exercise fragment
+            activity?.supportFragmentManager
+                ?.beginTransaction()
+                ?.apply {
+                    replace(R.id.main_frag_showingFrag, ExerciseFragment())
+                    commit()
+                }
         }
     }
 }

@@ -39,10 +39,10 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setCurrentFragment(fragment:Fragment)=
-        supportFragmentManager.beginTransaction().apply {
-            // replace current frameLayout (aka main_frag_showingFrag) with selected Fragment
-            replace(R.id.main_frag_showingFrag,fragment);
-            commit()
-        }
-
+        supportFragmentManager
+            .beginTransaction().apply {
+                // replace current frameLayout (aka main_frag_showingFrag) with selected Fragment
+                replace(R.id.main_frag_showingFrag,fragment);
+                commit()
+            }
 }
