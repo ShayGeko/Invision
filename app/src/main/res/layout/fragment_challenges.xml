@@ -8,7 +8,7 @@
     tools:context=".ui.MainActivity">
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/challenges_textView_DC"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:background="@color/teal_primary"
@@ -38,7 +38,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toBottomOf="@+id/challenges_textView_DC" />
 
     <TextView
         android:id="@+id/textView15"
@@ -249,16 +249,5 @@
         android:translationZ="100dp"
         app:layout_constraintBottom_toBottomOf="@+id/materialButton8"
         app:layout_constraintEnd_toEndOf="@+id/materialButton8" />
-
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottomNavigationView"
-        android:layout_width="match_parent"
-        android:layout_height="75dp"
-        android:translationZ="200dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:menu="@menu/bottom_nav_menu"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
