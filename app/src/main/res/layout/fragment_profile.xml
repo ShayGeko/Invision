@@ -8,7 +8,7 @@
     tools:context=".ui.MainActivity">
 
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/profile_imageView_background"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="-6dp"
@@ -41,7 +41,7 @@
         android:checkable="true"
         app:cornerRadius="50dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+        app:layout_constraintTop_toBottomOf="@+id/profile_imageView_background" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/materialButton3"
@@ -67,7 +67,7 @@
         app:layout_constraintTop_toTopOf="@+id/materialButton3" />
 
     <TextView
-        android:id="@+id/textView10"
+        android:id="@+id/profile_textView_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Towa Quimbayo"
@@ -80,7 +80,7 @@
         app:layout_constraintTop_toBottomOf="@+id/materialButton3" />
 
     <TextView
-        android:id="@+id/textView11"
+        android:id="@+id/profile_textView_email"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="name@email.com"
@@ -88,7 +88,7 @@
         android:translationZ="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView10" />
+        app:layout_constraintTop_toBottomOf="@+id/profile_textView_name" />
 
     <View
         android:id="@+id/view"
@@ -100,7 +100,7 @@
         android:elevation="0dp"
         android:translationZ="10dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView11" />
+        app:layout_constraintTop_toBottomOf="@+id/profile_textView_email" />
 
     <LinearLayout
         android:id="@+id/linearLayout2"
@@ -113,7 +113,7 @@
         app:layout_constraintTop_toBottomOf="@+id/view">
 
         <TextView
-            android:id="@+id/textView12"
+            android:id="@+id/profile_textView_completedWO"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/montserrat_medium"
@@ -124,7 +124,7 @@
 
 
         <TextView
-            android:id="@+id/textView13"
+            android:id="@+id/profile_textView_completedC"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/montserrat_medium"

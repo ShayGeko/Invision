@@ -15,34 +15,17 @@ import com.google.android.material.button.MaterialButton
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
+import android.widget.TextView
+import com.example.nerdsexcercising.data.Repository
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
-
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [ProfileFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class ProfileFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
     private lateinit var auth : FirebaseAuth;
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-
         auth = Firebase.auth
     }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -59,10 +42,42 @@ class ProfileFragment : Fragment() {
         logoutBtn.setOnClickListener {
             logout(view)
         }
+
+
+        var user = Repository.getCacheUser();
+        Firebase.auth.currentUser?.let {
+            GlobalScope.launch {
+                if (user === null) {
+                    user = Repository.getUser(it);
+                    this@ProfileFragment.activity?.runOnUiThread {
+                        // name
+                        val nameTV: TextView = view.findViewById(R.id.profile_textView_name);
+                        nameTV.text = user!!.displayName;
+
+                        // completed achievements
+                        val woTV: TextView = view.findViewById(R.id.profile_textView_completedWO);
+                        val cTV: TextView = view.findViewById(R.id.profile_textView_completedC);
+
+                        woTV.text = user!!.cntCompletedExercises.toString();
+                        cTV.text = user!!.cntCompletedWorkouts.toString();
+                    }
+                }
+            }
+        }
+
+        // name
+        val nameTV: TextView = view.findViewById(R.id.profile_textView_name);
+        nameTV.text = user?.displayName ?: "null";
+
+        // completed achievements
+        val woTV: TextView = view.findViewById(R.id.profile_textView_completedWO);
+        val cTV: TextView = view.findViewById(R.id.profile_textView_completedC);
+
+        woTV.text = user?.cntCompletedExercises.toString() ?: "-1";
+        cTV.text = user?.cntCompletedWorkouts.toString() ?: "-1";
     }
     fun logout(view: View){
         Log.d("ProfileFragment", "Logout");
-
 
         auth.signOut();
         GoogleSignIn.getClient(
@@ -76,24 +91,5 @@ class ProfileFragment : Fragment() {
         }
 
 
-    }
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment ProfileFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            ProfileFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
     }
 }
