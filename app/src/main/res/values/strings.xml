@@ -13,7 +13,7 @@
     <string name="invalid_username">Not a valid username</string>
     <string name="invalid_password">Password must be >5 characters</string>
     <string name="login_failed">"Login failed"</string>
-<!--    <string name="default_web_client_id">"901848354758-b498pdt6i9q1uumgung4m09kbq4qcg1n.apps.googleusercontent.com"</string>-->
+    <string name="default_web_client_id">"901848354758-b498pdt6i9q1uumgung4m09kbq4qcg1n.apps.googleusercontent.com"</string>
     <!--  Strings for home page  -->
     <string name="home_header_desc">"The background for home page header."</string>
     <string name="hello_user">Hey, Towa</string>
