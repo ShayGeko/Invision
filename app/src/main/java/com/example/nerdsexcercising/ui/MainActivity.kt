@@ -16,6 +16,7 @@ import com.google.firebase.ktx.Firebase
 
 class MainActivity : AppCompatActivity() {
     private lateinit var auth: FirebaseAuth;
+    private lateinit var bottomNavigationView: BottomNavigationView;
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,8 +32,7 @@ class MainActivity : AppCompatActivity() {
 
         setCurrentFragment(homeFragment)
 
-        val bottomNavigationView: BottomNavigationView=
-            findViewById<BottomNavigationView>(R.id.bottomNavigationView);
+        bottomNavigationView= findViewById(R.id.bottomNavigationView);
         bottomNavigationView.setOnItemSelectedListener {
             when(it.itemId){
                 R.id.main_botNavBtn_exercise->setCurrentFragment(exerciseFragment)
@@ -42,6 +42,7 @@ class MainActivity : AppCompatActivity() {
             }
             true
         }
+        bottomNavigationView.menu.getItem(1).isChecked = true;
     }
 
     private fun setCurrentFragment(fragment:Fragment)=
