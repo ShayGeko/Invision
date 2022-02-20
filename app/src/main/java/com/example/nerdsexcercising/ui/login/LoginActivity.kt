@@ -100,12 +100,12 @@ class LoginActivity : AppCompatActivity() {
 
     fun updateUI(account: FirebaseUser?) {
         if(account == null) {
-            Log.w("TAG", "User is null");
+            Log.w(TAG, "User is null");
             return;
         }
 
-        Log.d("TAG", "Hello, ${account.displayName.toString()}!");
-        Log.d("TAG", account.uid);
+        Log.d(TAG, "Hello, ${account.displayName.toString()}!");
+        Log.d(TAG, account.uid);
 
         startActivity(Intent(this, MainActivity::class.java));
         finish()
