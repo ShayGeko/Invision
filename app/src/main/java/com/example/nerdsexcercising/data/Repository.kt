@@ -58,11 +58,11 @@ object Repository {
                         LoggedInUser(
                                 data["userId"] as String,
                                 data["displayName"] as String,
-                                (data["experience"] as Long).toDouble(),
+                                (data["experience"] as Number).toDouble(),
                                 data["progress"] as List<Workout>,
                                 data["selectedWorkout"] as Workout?,
-                                (data["cntCompletedExercises"] as Long).toInt(),
-                                (data["cntCompletedWorkouts"] as Long).toInt(),
+                                (data["cntCompletedExercises"] as Number).toInt(),
+                                (data["cntCompletedWorkouts"] as Number).toInt(),
                         )
                 }
                 return cachedUser!!;

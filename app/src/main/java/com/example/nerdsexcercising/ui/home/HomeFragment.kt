@@ -33,74 +33,135 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        var user = Repository.getCacheUser();
         Firebase.auth.currentUser?.let {
             GlobalScope.launch {
-                val user = Repository.getCacheUser() ?: Repository.getUser(it);
+                if (user === null) {
+                    user = Repository.getUser(it);
 
-                Log.d("updating view with", user.toString())
+                    this@HomeFragment.activity?.runOnUiThread {
+                        // "hello x, let's exercise!"
+                        val helloTextView: TextView =
+                            view.findViewById<TextView>(R.id.homeFragment_textView_hello);
+                        helloTextView.text = "Hey " + user?.displayName;
 
-                this@HomeFragment.activity?.runOnUiThread {
-                    // "hello x, let's exercise!"
-                    val helloTextView: TextView =
-                        view.findViewById<TextView>(R.id.homeFragment_textView_hello);
-                    helloTextView.text = "Hey " + user?.displayName;
+                        // level progress bar
+                        var experience: Double = user?.experience ?: 0.0;
+                        val level: Double = Utility.getLevel(experience);
+                        val experienceNow: Int =
+                            floor(experience - Utility.getExperienceRequired(level - 1)).toInt();
+                        val experienceGoal: Int =
+                            ceil(Utility.getExperienceRequired(level + 1) - experience).toInt();
+                        val levelProgressBar: ProgressBar =
+                            view.findViewById<ProgressBar>(R.id.homeFragment_progressBar_);
+                        levelProgressBar.progress =
+                            ((experienceNow / experienceGoal.toDouble()) * 100).toInt();
 
-                    // level progress bar
-                    var experience: Double = user?.experience ?: 0.0;
-                    val level: Double = Utility.getLevel(experience);
-                    val experienceNow: Int =
-                        floor(experience - Utility.getExperienceRequired(level - 1)).toInt();
-                    val experienceGoal: Int =
-                        ceil(Utility.getExperienceRequired(level + 1) - experience).toInt();
-                    val levelProgressBar: ProgressBar =
-                        view.findViewById<ProgressBar>(R.id.homeFragment_progressBar_);
-                    levelProgressBar.progress =
-                        ((experienceNow / experienceGoal.toDouble()) * 100).toInt();
+                        // level text
+                        val levelTextView: TextView = view.findViewById(R.id.homeFragment_textView_level);
+                        levelTextView.text = (level+1).toInt().toString();
 
-                    // level text
-                    val levelTextView: TextView = view.findViewById(R.id.homeFragment_textView_level);
-                    levelTextView.text = (level+1).toInt().toString();
+                        // current exp text
+                        val currentEXPTextView: TextView = view.findViewById(R.id.homeFragment_textView_currentEXP);
+                        val maxEXPTextView: TextView = view.findViewById(R.id.homeFragment_textView_maxEXP);
+                        currentEXPTextView.text = experienceNow.toString();
+                        maxEXPTextView.text = getString(R.string.total_level_xp)
+                            .replace("1500", experienceGoal.toString());
 
-                    // current exp text
-                    val currentEXPTextView: TextView = view.findViewById(R.id.homeFragment_textView_currentEXP);
-                    val maxEXPTextView: TextView = view.findViewById(R.id.homeFragment_textView_maxEXP);
-                    currentEXPTextView.text = experienceNow.toString();
-                    maxEXPTextView.text = getString(R.string.total_level_xp)
-                        .replace("1500", experienceGoal.toString());
+                        // your workout, comments, and exp
+                        val yourWorkoutCommentTextView: TextView =
+                            view.findViewById(R.id.homeFragment_textView_yourWorkoutComment)
+                        val yourWorkoutExpTextView: TextView=
+                            view.findViewById(R.id.homeFragment_textView_yourWorkoutEXP);
+                        val currentWO: Workout? = user?.selectedWorkout;
+                        if (currentWO === null) {
+                            yourWorkoutCommentTextView.text = getString(R.string.curr_workout_section_none);
+                            yourWorkoutExpTextView.visibility = View.GONE;
+                        }
+                        else {
+                            yourWorkoutCommentTextView.textSize =
+                                (yourWorkoutCommentTextView.textSize * 1.2).toFloat();
+                            yourWorkoutCommentTextView.setTypeface(null, Typeface.BOLD);
+                            yourWorkoutCommentTextView.text = currentWO.name;
+                            yourWorkoutExpTextView.visibility = View.VISIBLE;
+                            yourWorkoutExpTextView.text = currentWO.reward.toString() + " EXP";
+                        }
 
-                    // your workout, comments, and exp
-                    val yourWorkoutCommentTextView: TextView =
-                        view.findViewById(R.id.homeFragment_textView_yourWorkoutComment)
-                    val yourWorkoutExpTextView: TextView=
-                        view.findViewById(R.id.homeFragment_textView_yourWorkoutEXP);
-                    val currentWO: Workout? = user?.selectedWorkout;
-                    if (currentWO === null) {
-                        yourWorkoutCommentTextView.text = getString(R.string.curr_workout_section_none);
-                        yourWorkoutExpTextView.visibility = View.GONE;
-                    }
-                    else {
-                        yourWorkoutCommentTextView.textSize =
-                            (yourWorkoutCommentTextView.textSize * 1.2).toFloat();
-                        yourWorkoutCommentTextView.setTypeface(null, Typeface.BOLD);
-                        yourWorkoutCommentTextView.text = currentWO.name;
-                        yourWorkoutExpTextView.visibility = View.VISIBLE;
-                        yourWorkoutExpTextView.text = currentWO.reward.toString() + " EXP";
-                    }
-
-                    // add/resume exercise
-                    val addresumeExerciseBtn: ImageView =
-                        view.findViewById<ImageView>(R.id.homeFragment_btn_addresumeExercise);
-                    addresumeExerciseBtn.setOnClickListener {
-                        // transition to exercise fragment
-                        activity?.supportFragmentManager
-                            ?.beginTransaction()
-                            ?.apply {
-                                replace(R.id.main_frag_showingFrag, ExerciseFragment())
-                                commit()
-                            }
+                        // add/resume exercise
+                        val addresumeExerciseBtn: ImageView =
+                            view.findViewById<ImageView>(R.id.homeFragment_btn_addresumeExercise);
+                        addresumeExerciseBtn.setOnClickListener {
+                            // transition to exercise fragment
+                            activity?.supportFragmentManager
+                                ?.beginTransaction()
+                                ?.apply {
+                                    replace(R.id.main_frag_showingFrag, ExerciseFragment())
+                                    commit()
+                                }
+                        }
                     }
                 }
             }
         };
+
+        // "hello x, let's exercise!"
+        val helloTextView: TextView =
+            view.findViewById<TextView>(R.id.homeFragment_textView_hello);
+        helloTextView.text = "Hey " + user?.displayName;
+
+        // level progress bar
+        var experience: Double = user?.experience ?: 0.0;
+        val level: Double = Utility.getLevel(experience);
+        val experienceNow: Int =
+            floor(experience - Utility.getExperienceRequired(level - 1)).toInt();
+        val experienceGoal: Int =
+            ceil(Utility.getExperienceRequired(level + 1) - experience).toInt();
+        val levelProgressBar: ProgressBar =
+            view.findViewById<ProgressBar>(R.id.homeFragment_progressBar_);
+        levelProgressBar.progress =
+            ((experienceNow / experienceGoal.toDouble()) * 100).toInt();
+
+        // level text
+        val levelTextView: TextView = view.findViewById(R.id.homeFragment_textView_level);
+        levelTextView.text = (level+1).toInt().toString();
+
+        // current exp text
+        val currentEXPTextView: TextView = view.findViewById(R.id.homeFragment_textView_currentEXP);
+        val maxEXPTextView: TextView = view.findViewById(R.id.homeFragment_textView_maxEXP);
+        currentEXPTextView.text = experienceNow.toString();
+        maxEXPTextView.text = getString(R.string.total_level_xp)
+            .replace("1500", experienceGoal.toString());
+
+        // your workout, comments, and exp
+        val yourWorkoutCommentTextView: TextView =
+            view.findViewById(R.id.homeFragment_textView_yourWorkoutComment)
+        val yourWorkoutExpTextView: TextView=
+            view.findViewById(R.id.homeFragment_textView_yourWorkoutEXP);
+        val currentWO: Workout? = user?.selectedWorkout;
+        if (currentWO === null) {
+            yourWorkoutCommentTextView.text = getString(R.string.curr_workout_section_none);
+            yourWorkoutExpTextView.visibility = View.GONE;
+        }
+        else {
+            yourWorkoutCommentTextView.textSize =
+                (yourWorkoutCommentTextView.textSize * 1.2).toFloat();
+            yourWorkoutCommentTextView.setTypeface(null, Typeface.BOLD);
+            yourWorkoutCommentTextView.text = currentWO.name;
+            yourWorkoutExpTextView.visibility = View.VISIBLE;
+            yourWorkoutExpTextView.text = currentWO.reward.toString() + " EXP";
+        }
+
+        // add/resume exercise
+        val addresumeExerciseBtn: ImageView =
+            view.findViewById<ImageView>(R.id.homeFragment_btn_addresumeExercise);
+        addresumeExerciseBtn.setOnClickListener {
+            // transition to exercise fragment
+            activity?.supportFragmentManager
+                ?.beginTransaction()
+                ?.apply {
+                    replace(R.id.main_frag_showingFrag, ExerciseFragment())
+                    commit()
+                }
+        }
     }
 }
