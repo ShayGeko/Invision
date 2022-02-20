@@ -23,7 +23,7 @@ class LoginRepository(val dataSource: LoginDataSource) {
         user = LoggedInUser(
             "Ike",
             "Ike",
-            10,
+            10.0,
             listOf(),
             Workout("SelectedWO", listOf(), 0),
             0,
