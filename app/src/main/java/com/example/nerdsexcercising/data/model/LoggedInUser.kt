@@ -5,5 +5,10 @@ package com.example.nerdsexcercising.data.model
  */
 data class LoggedInUser(
     val userId: String,
-    val displayName: String
+    val displayName: String,
+    val level: Number,
+    val progress: List<Workout>,
+    var selectedWorkout: Workout?,
+    var cntCompletedExercises: Number,
+    var cntCompletedWorkouts: Number
 )
