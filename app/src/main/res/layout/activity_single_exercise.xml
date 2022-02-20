@@ -76,7 +76,7 @@
             android:src="@drawable/exercise5" />
 
         <TableLayout
-            android:id="@+id/tableRow2"
+            android:id="@+id/tableRow21"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:layout_marginHorizontal="10dp"
@@ -131,7 +131,7 @@
             android:src="@drawable/exercise5" />
 
         <TableLayout
-            android:id="@+id/tableRow3"
+            android:id="@+id/tableRow31"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:layout_marginHorizontal="10dp"
@@ -222,7 +222,7 @@
     </TableRow>
 
     <TableRow
-        android:id="@+id/tableRow4"
+        android:id="@+id/tableRow41"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="30dp"

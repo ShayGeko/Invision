@@ -1,8 +1,11 @@
 package com.example.nerdsexcercising.ui
 
 
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.MediaController
+import android.widget.VideoView
 import androidx.fragment.app.Fragment
 import com.example.nerdsexcercising.R
 import com.example.nerdsexcercising.ui.challenges.ChallengesFragment
@@ -12,10 +15,10 @@ import com.example.nerdsexcercising.ui.profile.ProfileFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
 
         val exerciseFragment=ExerciseFragment()
         val homeFragment=HomeFragment()
@@ -33,6 +36,19 @@ class MainActivity : AppCompatActivity() {
             }
             true
         }
+
+//        For video here
+//        setContentView(R.layout.ongoing_exercise)
+//
+//        val mediaController = MediaController(this)
+//        mediaController.setAnchorView(findViewById<VideoView>(R.id.videoView))
+//
+//        val uri = Uri.parse("android.resource://$packageName/${R.raw.exercise_ongoing}")
+//
+//        findViewById<VideoView>(R.id.videoView).setMediaController(mediaController)
+//        findViewById<VideoView>(R.id.videoView).setVideoURI(uri)
+//        findViewById<VideoView>(R.id.videoView).requestFocus()
+//        findViewById<VideoView>(R.id.videoView).start()
 
     }
 
