@@ -89,7 +89,7 @@ class LoginActivity : AppCompatActivity() {
                     Log.d(TAG, "signInWithCredential:success")
                     val user = auth.currentUser
                     GlobalScope.launch {
-                        Repository.getUser(user!!.uid);
+                        Repository.getUser(user!!);
                         updateUI(user)
                     }
                 } else {

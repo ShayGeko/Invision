@@ -35,9 +35,9 @@ object Repository {
                 return db.collection("users").document(user.userId).set(user);
         }
         fun getCacheUser(): LoggedInUser? = cachedUser;
-        suspend fun getUser(uid : String): LoggedInUser {
+        suspend fun getUser(authUser: FirebaseUser): LoggedInUser {
                 val collected: Task<DocumentSnapshot> =
-                        db.collection("users").document(uid).get();
+                        db.collection("users").document(authUser.uid).get();
                 val awaited = suspendCancellableCoroutine<DocumentSnapshot> { continuation ->
                         collected.addOnSuccessListener {
                                 continuation.resume(it) {};
@@ -50,7 +50,8 @@ object Repository {
                 Log.d("data", data.toString());
 
                 cachedUser = if (data === null) {
-                        val guest = getGuestUser(uid);
+                        val guest = getGuestUser(authUser.uid);
+                        guest.displayName = authUser.displayName!!;
                         updateUser(guest)
                         guest;
                 } else {

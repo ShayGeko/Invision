@@ -35,7 +35,7 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         Firebase.auth.currentUser?.let {
             GlobalScope.launch {
-                val user = Repository.getCacheUser() ?: Repository.getUser(it.uid);
+                val user = Repository.getCacheUser() ?: Repository.getUser(it);
 
                 Log.d("updating view with", user.toString())
 

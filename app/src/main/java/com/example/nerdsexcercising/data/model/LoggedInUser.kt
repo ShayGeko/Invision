@@ -5,7 +5,7 @@ package com.example.nerdsexcercising.data.model
  */
 data class LoggedInUser(
     val userId: String = "",
-    val displayName: String ="",
+    var displayName: String ="",
     val experience: Double = 0.0,
     val progress: List<Workout> = emptyList(),
     var selectedWorkout: Workout? = null,
