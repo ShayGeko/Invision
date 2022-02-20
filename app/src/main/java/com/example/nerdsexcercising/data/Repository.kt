@@ -7,9 +7,8 @@ import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.QuerySnapshot
 
-class Repository {
+object Repository {
         private val TAG : String = "Repository"
-
         private val db : FirebaseFirestore = FirebaseFirestore.getInstance()
 
         fun getWorkouts () : Task<QuerySnapshot> {

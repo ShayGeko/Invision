@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/exercise"
-        android:title="Workouts"
-        android:icon="@drawable/ic_workouts"/>
+        android:id="@+id/main_botNavBtn_exercise"
+        android:title="Exercise"
+        android:icon="@drawable/ic_person_foreground"/>
     <item
-        android:id="@+id/home"
+        android:id="@+id/main_botNavBtn_home"
         android:title="Home"
-        android:icon="@drawable/ic_home"/>
+        android:icon="@drawable/ic_person_foreground"/>
     <item
-        android:id="@+id/challenges"
+        android:id="@+id/main_botNavBtn_challenges"
         android:title="Challenges"
-        android:icon="@drawable/ic_challenges"/>
+        android:icon="@drawable/ic_person_foreground"/>
     <item
-        android:id="@+id/account"
-        android:title="Account"
-        android:icon="@drawable/ic_account"/>
+        android:id="@+id/main_botNavBtn_profile"
+        android:title="Profile"
+        android:icon="@drawable/ic_person_foreground"/>
 </menu>

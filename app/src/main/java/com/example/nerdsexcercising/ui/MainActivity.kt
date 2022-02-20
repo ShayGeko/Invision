@@ -16,29 +16,32 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        supportActionBar?.hide();
 
-        val exerciseFragment=ExerciseFragment()
-        val homeFragment=HomeFragment()
-        val challengesFragment=ChallengesFragment()
-        val profileFragment=ProfileFragment()
+        val exerciseFragment: Fragment = ExerciseFragment()
+        val homeFragment: Fragment = HomeFragment()
+        val challengesFragment: Fragment = ChallengesFragment()
+        val profileFragment: Fragment = ProfileFragment()
 
         setCurrentFragment(homeFragment)
-        val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottomNavigationView);
-        bottomNavigationView.setOnNavigationItemSelectedListener {
-            when(it.itemId){
-                R.id.exercise->setCurrentFragment(exerciseFragment)
-                R.id.home->setCurrentFragment(homeFragment)
-                R.id.challenges->setCurrentFragment(challengesFragment)
 
+        val bottomNavigationView: BottomNavigationView=
+            findViewById<BottomNavigationView>(R.id.bottomNavigationView);
+        bottomNavigationView.setOnItemSelectedListener {
+            when(it.itemId){
+                R.id.main_botNavBtn_exercise->setCurrentFragment(exerciseFragment)
+                R.id.main_botNavBtn_home->setCurrentFragment(homeFragment)
+                R.id.main_botNavBtn_challenges->setCurrentFragment(challengesFragment)
+                R.id.main_botNavBtn_profile->setCurrentFragment(profileFragment)
             }
             true
         }
-
     }
 
     private fun setCurrentFragment(fragment:Fragment)=
         supportFragmentManager.beginTransaction().apply {
-            replace(R.id.flFragment,fragment)
+            // replace current frameLayout (aka main_frag_showingFrag) with selected Fragment
+            replace(R.id.main_frag_showingFrag,fragment);
             commit()
         }
 

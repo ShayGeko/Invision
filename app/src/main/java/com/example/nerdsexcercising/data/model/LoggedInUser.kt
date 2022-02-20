@@ -6,9 +6,9 @@ package com.example.nerdsexcercising.data.model
 data class LoggedInUser(
     val userId: String,
     val displayName: String,
-    val level: Number,
+    val experience: Number,
     val progress: List<Workout>,
-    var selectedWorkout: Workout?,
+    val selectedWorkout: Workout?,
     var cntCompletedExercises: Number,
-    var cntCompletedWorkouts: Number
+    var cntCompletedWorkouts: Number,
 )

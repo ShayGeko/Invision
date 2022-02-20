@@ -16,12 +16,10 @@ class TestActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_test)
 
-        val repository = Repository()
-
         // test buttons
         val retrieveButton: Button = findViewById<Button>(R.id.main_btn_retrieveData)
         retrieveButton.setOnClickListener{
-            repository.getWorkouts()
+            Repository.getWorkouts()
                 .addOnSuccessListener { documents ->
                     for(document in documents) {
                         Log.d("SUCCESS", document.data.toString());
@@ -40,7 +38,7 @@ class TestActivity : AppCompatActivity() {
                 listOf(squats20, pushups25,  situps50, pullups30),
                 3000
             )
-            repository.addWorkout(workout)
+            Repository.addWorkout(workout)
                 .addOnSuccessListener { documentReference ->
                     Log.d(TAG, "DocumentSnapshot added with ID: ${documentReference.id}")
                 }

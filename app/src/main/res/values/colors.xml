@@ -9,4 +9,10 @@
     <color name="white">#FFFFFFFF</color>
     <color name="teal_welcome_bg">#99C7EDE6</color>
     <color name="teal_primary">#FF2C9C88</color>
+    <color name="grey">#575757</color>
+    <color name="red">#8B0000</color>
+    <color name="translucent_red">#22FF0000</color>
+    <color name="translucent_blue">#220000FF</color>
+    <color name="translucent_white">#AAFFFFFF</color>
+    <color name="translucent_purple_200">#662286C3</color>
 </resources>
