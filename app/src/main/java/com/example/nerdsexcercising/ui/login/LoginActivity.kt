@@ -6,6 +6,8 @@ import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.nerdsexcercising.R
+import com.example.nerdsexcercising.data.Repository
+import com.example.nerdsexcercising.data.model.LoggedInUser
 import com.example.nerdsexcercising.ui.MainActivity
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
@@ -17,6 +19,8 @@ import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 
 class LoginActivity : AppCompatActivity() {
@@ -31,7 +35,6 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
-
         auth = Firebase.auth;
 
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -41,14 +44,12 @@ class LoginActivity : AppCompatActivity() {
 
         val googleSignInClient = GoogleSignIn.getClient(this, gso)
 
-
         // Set the dimensions of the sign-in button.
         // Set the dimensions of the sign-in button.
         val signInButton = findViewById<SignInButton>(R.id.login)
         signInButton.setSize(SignInButton.SIZE_STANDARD)
         signInButton.setOnClickListener {
             signIn(googleSignInClient)
-
         };
     }
     override fun onStart() {
@@ -87,8 +88,10 @@ class LoginActivity : AppCompatActivity() {
                     // Sign in success, update UI with the signed-in user's information
                     Log.d(TAG, "signInWithCredential:success")
                     val user = auth.currentUser
-
-                    updateUI(user)
+                    GlobalScope.launch {
+                        Repository.getUser(user!!);
+                        updateUI(user)
+                    }
                 } else {
                     // If sign in fails, display a message to the user.
                     Log.w(TAG, "signInWithCredential:failure", task.exception)
@@ -100,12 +103,12 @@ class LoginActivity : AppCompatActivity() {
 
     fun updateUI(account: FirebaseUser?) {
         if(account == null) {
-            Log.w("TAG", "User is null");
+            Log.w(TAG, "User is null");
             return;
         }
 
-        Log.d("TAG", "Hello, ${account.displayName.toString()}!");
-        Log.d("TAG", account.uid);
+        Log.d(TAG, "Hello, ${account.displayName.toString()}!");
+        Log.d(TAG, account.uid);
 
         startActivity(Intent(this, MainActivity::class.java));
         finish()

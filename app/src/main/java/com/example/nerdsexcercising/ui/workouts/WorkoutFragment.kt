@@ -1,4 +1,4 @@
-package com.example.nerdsexcercising.ui.exercises
+package com.example.nerdsexcercising.ui.workouts
 
 import android.os.Bundle
 import android.util.Log
@@ -9,7 +9,6 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.nerdsexcercising.R
-import com.example.nerdsexcercising.data.model.Exercise
 import com.example.nerdsexcercising.data.model.Workout
 import com.google.firebase.firestore.FirebaseFirestore
 
@@ -20,16 +19,16 @@ private const val ARG_PARAM2 = "param2"
 
 /**
  * A simple [Fragment] subclass.
- * Use the [ExerciseFragment.newInstance] factory method to
+ * Use the [WorkoutFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class ExerciseFragment : Fragment() {
+class WorkoutFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
     private lateinit var recyclerView: RecyclerView
-    private lateinit var exerciseList: ArrayList<Exercise>
-    private lateinit var exerciseAdapter: ExercisesAdapter
+    private lateinit var workoutsList: ArrayList<Workout>
+    private lateinit var workoutAdapter: WorkoutsAdapter
     private lateinit var db: FirebaseFirestore
 
 
@@ -46,20 +45,20 @@ class ExerciseFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_exercise, container, false)
+        return inflater.inflate(R.layout.fragment_workout, container, false)
     }
     override fun onViewCreated(itemView: View, savedInstanceState: Bundle?) {
         super.onViewCreated(itemView, savedInstanceState)
-        recyclerView = itemView.findViewById(R.id.exercises_recycler_view)
+        recyclerView = itemView.findViewById(R.id.workouts_recycler_view)
 
         recyclerView.layoutManager = LinearLayoutManager(activity)
         recyclerView.setHasFixedSize(true);
 
-        exerciseList = arrayListOf();
+        workoutsList = arrayListOf();
 
-        exerciseAdapter = ExercisesAdapter(exerciseList)
+        workoutAdapter = WorkoutsAdapter(workoutsList)
 
-        recyclerView.adapter = exerciseAdapter
+        recyclerView.adapter = workoutAdapter
 
         eventChangeListener()
 
@@ -68,18 +67,17 @@ class ExerciseFragment : Fragment() {
     private fun eventChangeListener(){
 
         db = FirebaseFirestore.getInstance()
-        db.collection("workouts").document("QlPRiJOE9KX7yQKJtNOd")
+        db.collection("workouts")
             .get()
-            .addOnSuccessListener {document ->
+            .addOnSuccessListener {documents ->
+                for (document in documents) {
                     Log.d("ExerciseFragment", document.toString());
                     val workout = document.toObject(Workout::class.java)
                     if (workout != null) {
-                        for(ex : Exercise in workout.exercises){
-                            exerciseList.add(ex)
-                        }
-
-                        exerciseAdapter.notifyDataSetChanged();
+                        workoutsList.add(workout)
+                        workoutAdapter.notifyDataSetChanged();
                     }
+                }
             }
     }
 }

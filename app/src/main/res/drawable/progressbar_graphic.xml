@@ -4,32 +4,40 @@
         <shape android:shape="oval">
             <stroke
                 android:width="25dp"
-                android:color="@color/translucent_blue" />
-            <solid android:color="@color/translucent_white" />
+                android:color="@color/teal_welcome_bg" />
+            <solid android:color="@color/white" />
             <size
                 android:width="10dp"
                 android:height="10dp" />
         </shape>
     </item>
-
     <item>
         <shape
-            android:shape="ring"
-            android:thicknessRatio="16"
-            android:useLevel="false">
-            <solid android:color="@color/black" />
+            android:layout_width="2dp"
+            android:layout_height="2dp"
+            android:shape="oval">
+            <solid android:color="@color/translucent_white" />
         </shape>
     </item>
 
     <item>
         <shape
             android:shape="ring"
-            android:thicknessRatio="16"
+            android:thicknessRatio="10"
+            android:useLevel="false">
+            <solid android:color="@color/teal_primary"/>
+        </shape>
+    </item>
+
+    <item>
+        <shape
+            android:shape="ring"
+            android:thicknessRatio="10"
             android:useLevel="true">
-            <solid android:color="@color/white" />
+            <solid android:color="@color/teal_welcome_bg" />
             <size
-                android:width="250dp"
-                android:height="250dp" />
+                android:width="200dp"
+                android:height="200dp" />
         </shape>
     </item>
 
