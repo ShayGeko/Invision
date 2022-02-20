@@ -22,7 +22,8 @@ class WorkoutsAdapter(private val workoutList : ArrayList<Workout>) : RecyclerVi
 
     override fun onBindViewHolder(holder: ExerciseViewHolder, position: Int) {
         var workout : Workout = workoutList[position];
-        holder.workoutName.text = "${workout.name} ${workout.reward}"
+        holder.workoutName.text = "${workout.name}"
+        holder.workoutReward.text = "${workout.reward} exp"
         Log.d("Adapter", workout.toString())
     }
 
@@ -32,5 +33,6 @@ class WorkoutsAdapter(private val workoutList : ArrayList<Workout>) : RecyclerVi
 
     class ExerciseViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView){
         val workoutName : TextView = itemView.findViewById(R.id.workout_name);
+        val workoutReward : TextView = itemView.findViewById(R.id.workout_reward);
     }
 }
