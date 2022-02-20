@@ -13,7 +13,7 @@ import com.example.nerdsexcercising.R
 import com.example.nerdsexcercising.data.Utility
 import com.example.nerdsexcercising.data.model.LoggedInUser
 import com.example.nerdsexcercising.data.model.Workout
-import com.example.nerdsexcercising.ui.exercises.ExerciseFragment
+import com.example.nerdsexcercising.ui.workouts.WorkoutFragment
 import kotlin.math.ceil
 import kotlin.math.floor
 
@@ -91,7 +91,7 @@ class HomeFragment : Fragment() {
             activity?.supportFragmentManager
                 ?.beginTransaction()
                 ?.apply {
-                    replace(R.id.main_frag_showingFrag, ExerciseFragment())
+                    replace(R.id.main_frag_showingFrag, WorkoutFragment())
                     commit()
                 }
         }

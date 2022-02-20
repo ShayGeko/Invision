@@ -5,9 +5,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import com.example.nerdsexcercising.R
-import com.example.nerdsexcercising.ui.challenges.ChallengesFragment
 import com.example.nerdsexcercising.ui.home.HomeFragment
-import com.example.nerdsexcercising.ui.exercises.ExerciseFragment
+import com.example.nerdsexcercising.ui.workouts.WorkoutFragment
 import com.example.nerdsexcercising.ui.profile.ProfileFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.auth.FirebaseAuth
@@ -25,9 +24,8 @@ class MainActivity : AppCompatActivity() {
         supportActionBar?.hide();
         auth = Firebase.auth;
 
-        val exerciseFragment: Fragment = ExerciseFragment()
+        val workoutFragment: Fragment = WorkoutFragment()
         val homeFragment: Fragment = HomeFragment()
-        // val challengesFragment: Fragment = ChallengesFragment()
         val profileFragment: Fragment = ProfileFragment()
 
         setCurrentFragment(homeFragment)
@@ -35,9 +33,8 @@ class MainActivity : AppCompatActivity() {
         bottomNavigationView= findViewById(R.id.bottomNavigationView);
         bottomNavigationView.setOnItemSelectedListener {
             when(it.itemId){
-                R.id.main_botNavBtn_exercise->setCurrentFragment(exerciseFragment)
+                R.id.main_botNavBtn_workout->setCurrentFragment(workoutFragment)
                 R.id.main_botNavBtn_home->setCurrentFragment(homeFragment)
-                // R.id.main_botNavBtn_challenges->setCurrentFragment(challengesFragment)
                 R.id.main_botNavBtn_profile->setCurrentFragment(profileFragment)
             }
             true

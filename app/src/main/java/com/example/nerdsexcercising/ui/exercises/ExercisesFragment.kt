@@ -46,7 +46,7 @@ class ExerciseFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_exercise, container, false)
+        return inflater.inflate(R.layout.activity_single_exercise, container, false)
     }
     override fun onViewCreated(itemView: View, savedInstanceState: Bundle?) {
         super.onViewCreated(itemView, savedInstanceState)
